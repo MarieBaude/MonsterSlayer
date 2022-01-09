@@ -1,3 +1,27 @@
+class People {
+    constructor(name) {
+      this.name = name;
+      this.hp = 100;
+    }
+    attack(damage) {
+      this.damage = damage;
+    }
+  }
+  
+  class Player extends People {
+    attackSpe(speDamage) {
+      this.speDamage = speDamage;
+    }
+    heal() {
+        this.heal = 10;
+    }
+  }
+  
+let player = new Player("You");
+
+player.attack(3); 
+player.attackSpe(15); 
+
 /* VARIABLES 
 -----------------------------
 */
