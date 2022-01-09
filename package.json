@@ -1,0 +1,19 @@
+{
+  "name": "7_monster2",
+  "version": "1.0.0",
+  "description": "Vous devrez créer une page web contenant un petit jeu de combat avec un monstre.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarieBaude/MonsterSlayer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarieBaude/MonsterSlayer/issues"
+  },
+  "homepage": "https://github.com/MarieBaude/MonsterSlayer#readme"
+}
