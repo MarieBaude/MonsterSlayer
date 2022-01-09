@@ -4,7 +4,7 @@
   "description": "Vous devrez créer une page web contenant un petit jeu de combat avec un monstre.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sass": "sass --watch sass/main.scss:sass/style.css --style compressed"
   },
   "repository": {
     "type": "git",

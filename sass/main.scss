@@ -1,0 +1,124 @@
+@import "reset";
+
+// main color
+$primary-color: #2c2c2c;
+$secondary-color : #e2e2e2;
+
+//monster slayer color
+$hp-bar : #084b1c;
+$under-bar : #3b3b3b;
+
+//& : button
+$button-start : #92e2ad;
+$button-start-hover : #45ad68;
+$button-attack : #c44e4e;
+$button-attack-hover : #af2828;
+$button-speacial-attack : #cc8849;
+$button-speacial-attack-hover : #c0732c;
+$button-heal : #96d890;
+$button-heal-hover : #5ccf52;
+$button-give-up : #747474;
+$button-give-up-hover : #5a5a5a;
+
+@mixin section-style {
+    margin-top: 2em;
+    border: solid $secondary-color 1px;
+    width: 25em;
+    padding: 2em;
+}
+
+body {
+    background: $primary-color;
+    color: $secondary-color;
+    list-style: none;
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+    padding: 1em;
+}
+
+button {
+    cursor: pointer;
+    border: solid white 1px;
+    background: none;
+    color: $secondary-color;
+    font-size: 2em;
+    &:hover {
+        background: $secondary-color;
+        color: $primary-color;
+    }
+}
+
+.pv {
+    display: flex;
+    justify-content: space-between;
+    width: 29em;
+    div {
+        height: 2.5em;
+        width: 13em;
+    }
+    .bar {
+        background: $hp-bar;
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.action {
+    display: flex;
+    justify-content: center;
+    @include section-style;
+    .button-monster-slayer {
+        border: none;
+        padding: 0.5em 1em;
+        font-size: 1em;
+    }
+    .button-action{
+        color: $primary-color;
+        display: none;
+    }
+    .new-start-monster {
+        background: $button-start;
+        color: $primary-color;
+    }
+    .attack {
+        background: $button-attack;
+        &:hover {
+            background: $button-attack-hover;
+        }
+    }
+    .special-attack {
+        background: $button-speacial-attack;
+        &:hover {
+            background: $button-speacial-attack-hover;
+        }
+    }
+    .heal {
+        background: $button-heal;
+        &:hover {
+            background: $button-heal-hover;
+        }
+    }
+    .give-up {
+        background: $button-give-up;
+        &:hover {
+            background: $button-give-up-hover;
+        }
+    }
+}
+
+.text {
+   @include section-style;
+   display: none;
+   .action-list {
+        display: flex;
+        flex-direction: column;
+   }
+}
