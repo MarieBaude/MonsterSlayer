@@ -1,27 +1,3 @@
-class People {
-    constructor(name) {
-      this.name = name;
-      this.hp = 100;
-    }
-    attack(damage) {
-      this.damage = damage;
-    }
-  }
-  
-  class Player extends People {
-    attackSpe(speDamage) {
-      this.speDamage = speDamage;
-    }
-    heal() {
-        this.heal = 10;
-    }
-  }
-  
-let player = new Player("You");
-
-player.attack(3); 
-player.attackSpe(15); 
-
 /* VARIABLES 
 -----------------------------
 */
@@ -36,9 +12,6 @@ const buttonGiveUP = document.querySelector('.give-up');
 
 const sectionText = document.querySelector('.text');
 const list = document.querySelector('.action-list');
-
-let playerHP = 100;
-let monsterHP = 100;
 
 let playerDamage;
 let monsterDamage;
@@ -56,19 +29,20 @@ buttonGiveUP.addEventListener('click', function() {
     reset();
 });
 
+
 buttonAttack.addEventListener('click', function() {
-    playerAttack();
+    player.attackPlayer();
+    monster.attackMonster();
     updateSizeBarPlayer();
     updateSizeBarMonster();
-    monsterAttack();
     addLiPlayer();
     addLiMonster();
     checkWinner();
 });
 
 buttonSpecialAttack.addEventListener('click', function() {
-    playerSpecialAttack();
-    monsterAttack();
+    player.attackSpe();
+    monster.attackMonster();
     updateSizeBarPlayer();
     updateSizeBarMonster();
     addLiPlayerSpecial();
@@ -77,8 +51,7 @@ buttonSpecialAttack.addEventListener('click', function() {
 });
 
 buttonHeal.addEventListener('click', function() {
-    playerHeal();
-    monsterAttack();
+    player.heal();
     addLiPlayerHeal();
     addLiMonster();
     checkWinner();
@@ -88,33 +61,43 @@ buttonHeal.addEventListener('click', function() {
 /* FUNCTIONS 
 -----------------------------
 */
-function playerHeal () {
-    playerHP += 10;
-    playerBar.style.width = playerHP + 10 + '%';
+
+let playerHP = 100;
+let monsterHP = 100;
+
+class People {
+    constructor(name) {
+        this.name = name;
+        this.hp = 100;
+    }
 }
 
-function updateSizeBarPlayer () {
-    playerBar.style.width = playerHP + '%';
+class Player extends People {
+    attackPlayer() {
+        playerDamage = randomNum(3, 10);
+        monsterHP -= playerDamage;
+    }
+    attackSpe() {
+        playerSpeDamage = randomNum(10, 20);
+        monsterHP -= playerSpeDamage;
+    }
+    heal() {
+        this.heal = 10;
+        playerHP += 10;
+        playerBar.style.width = playerHP + 10 + '%';
+    }
 }
 
-function updateSizeBarMonster () {
-    monsterBar.style.width = monsterHP + '%';
+class Monster extends People {
+    attackMonster() {
+        monsterDamage = randomNum(5, 10);
+        playerHP -= monsterDamage;
+    }
 }
 
-function playerAttack () {
-    playerDamage = randomNum(3, 10);
-    monsterHP -= playerDamage;
-}
+let player = new Player("You");
+let monster = new Monster("Monster");
 
-function playerSpecialAttack () {
-    playerSpeDamage = randomNum(10, 20);
-    monsterHP -= playerSpeDamage;
-}
-
-function monsterAttack () {
-    monsterDamage = randomNum(5, 10);
-    playerHP -= monsterDamage;
-}
 
 function addLiPlayer () {
     let liPLayer = document.createElement('li.player-action');
@@ -138,6 +121,14 @@ function addLiPlayerHeal () {
     let liPLayerHeal = document.createElement('li.player-action-heal');
     liPLayerHeal.appendChild(document.createTextNode('Player heals for ' + '10'));
     list.appendChild(liPLayerHeal);
+}
+
+function updateSizeBarPlayer () {
+    playerBar.style.width = playerHP + '%';
+}
+
+function updateSizeBarMonster () {
+    monsterBar.style.width = monsterHP + '%';
 }
 
 function reset () {
