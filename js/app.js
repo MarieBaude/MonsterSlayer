@@ -1,3 +1,5 @@
+"use strict";
+
 /* VARIABLES 
 -----------------------------
 */
@@ -17,6 +19,8 @@ let playerDamage;
 let monsterDamage;
 let playerSpeDamage;
 
+let playerHP = 100;
+let monsterHP = 100;
 
 /* EVENTS
 -----------------------------
@@ -28,7 +32,6 @@ buttonStart.addEventListener('click', function() {
 buttonGiveUP.addEventListener('click', function() {
     reset();
 });
-
 
 buttonAttack.addEventListener('click', function() {
     player.attackPlayer();
@@ -58,12 +61,9 @@ buttonHeal.addEventListener('click', function() {
 });
 
 
-/* FUNCTIONS 
+/* CLASS 
 -----------------------------
 */
-let playerHP = 100;
-let monsterHP = 100;
-
 class People {
     constructor(name) {
         this.name = name;
@@ -97,6 +97,10 @@ class Monster extends People {
 let player = new Player("You");
 let monster = new Monster("Monster");
 
+
+/* FUNCTIONS 
+-----------------------------
+*/
 
 function addLiPlayer () {
     let liPLayer = document.createElement('li.player-action');
