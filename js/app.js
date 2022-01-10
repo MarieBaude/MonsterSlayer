@@ -61,7 +61,6 @@ buttonHeal.addEventListener('click', function() {
 /* FUNCTIONS 
 -----------------------------
 */
-
 let playerHP = 100;
 let monsterHP = 100;
 
