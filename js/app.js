@@ -35,28 +35,30 @@ buttonGiveUP.addEventListener('click', function() {
 
 buttonAttack.addEventListener('click', function() {
     player.attackPlayer();
+    player.addLiPlayer();
+    player.updateSizeBarPlayer();
     monster.attackMonster();
-    updateSizeBarPlayer();
-    updateSizeBarMonster();
-    addLiPlayer();
-    addLiMonster();
+    monster.addLiMonster();
+    monster.updateSizeBarMonster();
     checkWinner();
 });
 
 buttonSpecialAttack.addEventListener('click', function() {
     player.attackSpe();
+    player.addLiPlayerSpecial();
+    player.updateSizeBarPlayer();
     monster.attackMonster();
-    updateSizeBarPlayer();
-    updateSizeBarMonster();
-    addLiPlayerSpecial();
-    addLiMonster();
+    monster.addLiMonster();
+    monster.updateSizeBarMonster();
     checkWinner();
 });
 
 buttonHeal.addEventListener('click', function() {
     player.heal();
-    addLiPlayerHeal();
-    addLiMonster();
+    player.addLiPlayerHeal();
+    player.updateSizeBarPlayer();
+    monster.attackMonster();
+    monster.addLiMonster();
     checkWinner();
 });
 
@@ -81,9 +83,26 @@ class Player extends People {
         monsterHP -= playerSpeDamage;
     }
     heal() {
-        this.heal = 10;
         playerHP += 10;
         playerBar.style.width = playerHP + 10 + '%';
+    }
+    addLiPlayer () {
+        let liPLayer = document.createElement('li.player-action');
+        liPLayer.appendChild(document.createTextNode('Player hit monster for ' + playerDamage ));
+        list.appendChild(liPLayer);
+    }
+    addLiPlayerSpecial () {
+        let liPLayerSpecial = document.createElement('li.player-action');
+        liPLayerSpecial.appendChild(document.createTextNode('Player hit hard monster for ' + playerSpeDamage ));
+        list.appendChild(liPLayerSpecial);
+    }
+    addLiPlayerHeal () {
+        let liPLayerHeal = document.createElement('li.player-action-heal');
+        liPLayerHeal.appendChild(document.createTextNode('Player heals for ' + '10'));
+        list.appendChild(liPLayerHeal);
+    }
+    updateSizeBarPlayer () {
+        playerBar.style.width = playerHP + '%';
     }
 }
 
@@ -91,6 +110,14 @@ class Monster extends People {
     attackMonster() {
         monsterDamage = randomNum(5, 10);
         playerHP -= monsterDamage;
+    }
+    addLiMonster () {
+        let liMonster = document.createElement('li.monster-action');
+        liMonster.appendChild(document.createTextNode('\n' + 'Monster hit player for ' + monsterDamage ));
+        list.appendChild(liMonster);
+    }
+    updateSizeBarMonster () {
+        monsterBar.style.width = monsterHP + '%';
     }
 }
 
@@ -101,39 +128,6 @@ let monster = new Monster("Monster");
 /* FUNCTIONS 
 -----------------------------
 */
-
-function addLiPlayer () {
-    let liPLayer = document.createElement('li.player-action');
-    liPLayer.appendChild(document.createTextNode('Player hit monster for ' + playerDamage ));
-    list.appendChild(liPLayer);
-}
-
-function addLiMonster () {
-    let liMonster = document.createElement('li.monster-action');
-    liMonster.appendChild(document.createTextNode('\n' + 'Monster hit player for ' + monsterDamage ));
-    list.appendChild(liMonster);
-}
-
-function addLiPlayerSpecial () {
-    let liPLayerSpecial = document.createElement('li.player-action');
-    liPLayerSpecial.appendChild(document.createTextNode('Player hit hard monster for ' + playerSpeDamage ));
-    list.appendChild(liPLayerSpecial);
-}
-
-function addLiPlayerHeal () {
-    let liPLayerHeal = document.createElement('li.player-action-heal');
-    liPLayerHeal.appendChild(document.createTextNode('Player heals for ' + '10'));
-    list.appendChild(liPLayerHeal);
-}
-
-function updateSizeBarPlayer () {
-    playerBar.style.width = playerHP + '%';
-}
-
-function updateSizeBarMonster () {
-    monsterBar.style.width = monsterHP + '%';
-}
-
 function reset () {
     buttonAttack.style.display = 'none';
     buttonSpecialAttack.style.display = 'none';
