@@ -60,7 +60,7 @@ buttonHeal.addEventListener('click', function() {
     checkWinner();
 });
 
- 
+
 /* CLASS 
 -----------------------------
 */
@@ -68,9 +68,6 @@ class People {
     constructor(name) {
         this.name = name;
         //this.hp = 100;
-    }
-    randomNum(min, max) {
-        return Math.floor(Math.random() * (max - min +1)) + min;
     }
 }
 
@@ -161,8 +158,6 @@ function checkWinner () {
     }
 }
 
-
-
 function appearButton () {
     buttonStart.style.display = 'none';
     buttonAttack.style.display = 'inherit';
@@ -170,4 +165,8 @@ function appearButton () {
     buttonHeal.style.display = 'inherit';
     buttonGiveUP.style.display = 'inherit';
     sectionText.style.display = 'inherit';
+}
+
+function randomNum(min, max) {
+    return Math.floor(Math.random() * (max - min +1)) + min;
 }
