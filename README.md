@@ -1,5 +1,7 @@
 # Monster Slayer
 
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+
 Vous devrez créer une page web contenant un petit jeu de combat avec un monstre.
 
 La différence avec la version #1 c’est que cette fois il faut qu’elle soit en orienté objet avec des classes, héritage, mixins etc…, et en version ES2017+ (async await), même si l’asynchrone n’est pas forcément très pertinent pour ce genre de petit programme, c’est plus pour de la mise en pratique.
