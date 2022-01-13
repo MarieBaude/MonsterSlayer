@@ -60,14 +60,17 @@ buttonHeal.addEventListener('click', function() {
     checkWinner();
 });
 
-
+ 
 /* CLASS 
 -----------------------------
 */
 class People {
     constructor(name) {
         this.name = name;
-        this.hp = 100;
+        //this.hp = 100;
+    }
+    randomNum(min, max) {
+        return Math.floor(Math.random() * (max - min +1)) + min;
     }
 }
 
@@ -158,9 +161,7 @@ function checkWinner () {
     }
 }
 
-function randomNum(min, max) {
-    return Math.floor(Math.random() * (max - min +1)) + min;
-}
+
 
 function appearButton () {
     buttonStart.style.display = 'none';
